@@ -1,29 +1,21 @@
-package hospital.medical.record.manament.domains;
+package hospital.medical.record.manament.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
-@Entity
-public class Drug {
+public class DrugDTO {
 
-	@Id
 	private long id;
 
-	@NotBlank
-	@Column(nullable = false)
 	@NotBlank(message = "info is required")
 	private String name;
 
-	@Column(columnDefinition = "TEXT", nullable = false)
 	@NotBlank(message = "info is required")
 	private String info;
 
-	public Drug() {
+	public DrugDTO() {
 	}
 
-	public Drug(long id, @NotBlank @NotBlank(message = "info is required") String name,
+	public DrugDTO(long id, @NotBlank @NotBlank(message = "info is required") String name,
 			@NotBlank(message = "info is required") String info) {
 		this.id = id;
 		this.name = name;

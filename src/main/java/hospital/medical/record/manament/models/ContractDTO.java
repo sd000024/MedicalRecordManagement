@@ -1,50 +1,38 @@
-package hospital.medical.record.manament.domains;
+package hospital.medical.record.manament.models;
 
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-@Entity
-public class Contract {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ContractDTO {
+
+
 	private long id;
 
 	@NotBlank(message = "Contract Number is Required")
-	@Column(nullable = false)
 	private String contractNumber;
 
-	@ManyToOne
 	@NotNull(message = "The hostpital is Required")
-	private Hospital hospital;
+	private long hospitalID;
 
-	@Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	private LocalDate startDate;
 
-	@Column(columnDefinition = "TIMESTAMP", nullable = true)
 	private LocalDate endDate;
 
 	@NotNull(message = "contact file is required")
-	@Column(nullable = false)
 	private String contractLocation;
 
-	public Contract() {
+	public ContractDTO() {
 	}
 
-	public Contract(long id, @NotBlank(message = "Contract Number is Required") String contractNumber,
-			@NotNull(message = "The hostpital is Required") Hospital hospital, LocalDate startDate, LocalDate endDate,
+	public ContractDTO(long id, @NotBlank(message = "Contract Number is Required") String contractNumber,
+			@NotNull(message = "The hostpital is Required") long hospitalID, LocalDate startDate, LocalDate endDate,
 			@NotNull(message = "contact file is required") String contractLocation) {
 		this.id = id;
 		this.contractNumber = contractNumber;
-		this.hospital = hospital;
+		this.hospitalID = hospitalID;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.contractLocation = contractLocation;
@@ -66,12 +54,12 @@ public class Contract {
 		this.contractNumber = contractNumber;
 	}
 
-	public Hospital getHospital() {
-		return hospital;
+	public long getHospital() {
+		return hospitalID;
 	}
 
-	public void setHospital(Hospital hospital) {
-		this.hospital = hospital;
+	public void setHospital(long hospitalID) {
+		this.hospitalID = hospitalID;
 	}
 
 	public LocalDate getStartDate() {

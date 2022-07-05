@@ -1,65 +1,79 @@
-package hospital.medical.record.manament.domains;
+package hospital.medical.record.manament.models;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
+import hospital.medical.record.manament.constants.AdminRole;
 import hospital.medical.record.manament.constants.Gender;
 
-public class Person {
+public class AdmistrationDTO {
+
+	@NotBlank(message = "Employment Number is required")
+	private String employmentNumber;
 
 	@NotBlank(message = "Firstname is required")
-	@Column(nullable = false)
 	private String firstName;
 
 	@NotBlank(message = "Lastname is required")
-	@Column(nullable = false)
 	private String lastName;
 
 	@NotBlank(message = "ID card number is required")
-	@Column(nullable = false)
 	private String IDCardNumber;
 
-	@Column
 	private String photoURL;
 
-	@Column
 	private String phoneNumber;
 
-	@Column
 	private String email;
 
+	@NotNull(message = "The role must selected")
+	private AdminRole adminRole;
+
+	private String contractID;
+
+	private long hospitalID;
+
 	@NotBlank(message = "Nationality is required")
-	@Column(nullable = false)
 	private String nationality;
 
 	@NotBlank(message = "Gender is required")
-	@Column(nullable = false)
-	@Enumerated(EnumType.STRING)
 	private Gender gender;
 
-	@OneToOne
-	private Address address;
+	private long addressID;
 
-	public Person(@NotBlank(message = "Firstname is required") String firstName,
+	public AdmistrationDTO(@NotBlank(message = "Employment Number is required") String employmentNumber,
+			@NotBlank(message = "Firstname is required") String firstName,
 			@NotBlank(message = "Lastname is required") String lastName,
 			@NotBlank(message = "ID card number is required") String iDCardNumber, String photoURL, String phoneNumber,
-			String email, @NotBlank(message = "Nationality is required") String nationality,
-			@NotBlank(message = "Gender is required") Gender gender, Address address) {
+			String email, @NotNull(message = "The role must selected") AdminRole adminRole, String contractID,
+			long hospitalID, @NotBlank(message = "Nationality is required") String nationality,
+			@NotBlank(message = "Gender is required") Gender gender, long addressID) {
+		this.employmentNumber = employmentNumber;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		IDCardNumber = iDCardNumber;
+		this.IDCardNumber = iDCardNumber;
 		this.photoURL = photoURL;
 		this.phoneNumber = phoneNumber;
 		this.email = email;
+		this.adminRole = adminRole;
+		this.contractID = contractID;
+		this.hospitalID = hospitalID;
 		this.nationality = nationality;
 		this.gender = gender;
-		this.address = address;
+		this.addressID = addressID;
+	}
+	
+
+	public AdmistrationDTO() {
 	}
 
-	public Person() {
+
+	public String getEmploymentNumber() {
+		return employmentNumber;
+	}
+
+	public void setEmploymentNumber(String employmentNumber) {
+		this.employmentNumber = employmentNumber;
 	}
 
 	public String getFirstName() {
@@ -83,7 +97,7 @@ public class Person {
 	}
 
 	public void setIDCardNumber(String iDCardNumber) {
-		IDCardNumber = iDCardNumber;
+		this.IDCardNumber = iDCardNumber;
 	}
 
 	public String getPhotoURL() {
@@ -110,6 +124,30 @@ public class Person {
 		this.email = email;
 	}
 
+	public AdminRole getAdminRole() {
+		return adminRole;
+	}
+
+	public void setAdminRole(AdminRole adminRole) {
+		this.adminRole = adminRole;
+	}
+
+	public String getContractID() {
+		return contractID;
+	}
+
+	public void setContractID(String contractID) {
+		this.contractID = contractID;
+	}
+
+	public long getHospitalID() {
+		return hospitalID;
+	}
+
+	public void setHospitalID(long hospitalID) {
+		this.hospitalID = hospitalID;
+	}
+
 	public String getNationality() {
 		return nationality;
 	}
@@ -126,12 +164,12 @@ public class Person {
 		this.gender = gender;
 	}
 
-	public Address getAddress() {
-		return address;
+	public long getAddressID() {
+		return addressID;
 	}
 
-	public void setAddress(Address address) {
-		this.address = address;
+	public void setAddressID(long addressID) {
+		this.addressID = addressID;
 	}
 
 }

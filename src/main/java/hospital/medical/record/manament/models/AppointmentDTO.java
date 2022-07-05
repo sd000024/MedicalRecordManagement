@@ -1,53 +1,42 @@
-package hospital.medical.record.manament.domains;
+package hospital.medical.record.manament.models;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
-@Entity
-public class Appointment {
+public class AppointmentDTO {
 
-	@Id
 	private String id;
 
-	@ManyToOne
 	@NotNull(message = "Patient is required")
-	private Patient patient;
+	private PatientDTO patient;
 
-	@ManyToOne
 	@NotNull(message = "Doctor is required")
-	private Doctor doctor;
+	private String doctorID;
 
 	@NotNull(message = "date and time are required")
-	@Column(nullable = false)
 	private LocalDateTime dateAndTime;
 
-	@Column(columnDefinition = "TEXT", nullable = false)
 	@NotNull(message = "the reason of appointment is required")
 	private String comment;
 
-	@ManyToOne
 	@NotNull(message = "The hospital is required")
-	private Hospital hospital;
+	private long hospitalID;
 
-	public Appointment(String id, @NotNull(message = "Patient is required") Patient patient,
-			@NotNull(message = "Doctor is required") Doctor doctor,
-			@NotNull(message = "date and time are required") LocalDateTime dateAndTime,
-			@NotNull(message = "the reason of appointment is required") String comment,
-			@NotNull(message = "The hospital is required") Hospital hospital) {
-		this.id = id;
-		this.patient = patient;
-		this.doctor = doctor;
-		this.dateAndTime = dateAndTime;
-		this.comment = comment;
-		this.hospital = hospital;
+	public AppointmentDTO() {
 	}
 
-	public Appointment() {
+	public AppointmentDTO(String id, @NotNull(message = "Patient is required") PatientDTO patient,
+			@NotNull(message = "Doctor is required") String doctorID,
+			@NotNull(message = "date and time are required") LocalDateTime dateAndTime,
+			@NotNull(message = "the reason of appointment is required") String comment,
+			@NotNull(message = "The hospital is required") long hospitalID) {
+		this.id = id;
+		this.patient = patient;
+		this.doctorID = doctorID;
+		this.dateAndTime = dateAndTime;
+		this.comment = comment;
+		this.hospitalID = hospitalID;
 	}
 
 	public String getId() {
@@ -58,20 +47,20 @@ public class Appointment {
 		this.id = id;
 	}
 
-	public Patient getPatient() {
+	public PatientDTO getPatient() {
 		return patient;
 	}
 
-	public void setPatient(Patient patient) {
+	public void setPatient(PatientDTO patient) {
 		this.patient = patient;
 	}
 
-	public Doctor getDoctor() {
-		return doctor;
+	public String getDoctorID() {
+		return doctorID;
 	}
 
-	public void setDoctor(Doctor doctor) {
-		this.doctor = doctor;
+	public void setDoctorID(String doctorID) {
+		this.doctorID = doctorID;
 	}
 
 	public LocalDateTime getDateAndTime() {
@@ -90,12 +79,12 @@ public class Appointment {
 		this.comment = comment;
 	}
 
-	public Hospital getHospital() {
-		return hospital;
+	public long getHospitalID() {
+		return hospitalID;
 	}
 
-	public void setHospital(Hospital hospital) {
-		this.hospital = hospital;
+	public void setHospitalID(long hospitalID) {
+		this.hospitalID = hospitalID;
 	}
 
 }

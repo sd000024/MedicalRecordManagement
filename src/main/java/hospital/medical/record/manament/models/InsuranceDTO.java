@@ -1,65 +1,52 @@
-package hospital.medical.record.manament.domains;
+package hospital.medical.record.manament.models;
 
 import java.time.LocalDate;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 import hospital.medical.record.manament.constants.InsuranceType;
 
-@Entity
-public class Insurance {
+public class InsuranceDTO {
 
-	@Id
+	
 	private long id;
 
 	@NotNull(message = "insuranceNumber is required")
-	@Column(nullable = false)
 	private String insuranceNumber;
 
-	@Enumerated(EnumType.STRING)
 	@NotNull(message = "Insurance type Date is required")
-	@Column(nullable = false)
 	private InsuranceType type;
 
 	@NotNull(message = "Expiration Date is required")
-	@Column(nullable = false)
 	private LocalDate expirationDate;
 
 	/**
 	 * the insurance itself will be saved in a server and <fileLocation> will point
 	 * the location of insurance.
 	 */
-	@Column
 	private String fileLocation;
 
-	@ManyToOne
-	@JoinColumn(name = "patient")
-	private Patient patient;
+	private String patientID
+	;
 
 	@Column
 	private boolean isValid;
 
-	public Insurance(long id, @NotNull(message = "insuranceNumber is required") String insuranceNumber,
+	public InsuranceDTO(long id, @NotNull(message = "insuranceNumber is required") String insuranceNumber,
 			@NotNull(message = "Insurance type Date is required") InsuranceType type,
 			@NotNull(message = "Expiration Date is required") LocalDate expirationDate, String fileLocation,
-			Patient patient, boolean isValid) {
+			String patientID, boolean isValid) {
 		this.id = id;
 		this.insuranceNumber = insuranceNumber;
 		this.type = type;
 		this.expirationDate = expirationDate;
 		this.fileLocation = fileLocation;
-		this.patient = patient;
+		this.patientID = patientID;
 		this.isValid = isValid;
 	}
 
-	public Insurance() {
+	public InsuranceDTO() {
 	}
 
 	public long getId() {
@@ -102,12 +89,12 @@ public class Insurance {
 		this.fileLocation = fileLocation;
 	}
 
-	public Patient getPatient() {
-		return patient;
+	public String getPatient() {
+		return patientID;
 	}
 
-	public void setPatient(Patient patient) {
-		this.patient = patient;
+	public void setPatient(String patientID) {
+		this.patientID = patientID;
 	}
 
 	public boolean isValid() {
