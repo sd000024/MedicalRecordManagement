@@ -1,9 +1,11 @@
 package hospital.medical.record.manament.models;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
+
 
 public class MedicalVisitDTO {
 
@@ -11,7 +13,7 @@ public class MedicalVisitDTO {
 
 	private List<String> diagonsises;
 
-	private List<PrescriptionDTO> prescription;
+	private List<PrescriptionDTO> prescriptionDTO;
 
 	private List<String> symptoms;
 
@@ -26,14 +28,13 @@ public class MedicalVisitDTO {
 
 	private String comments;
 
-	public MedicalVisitDTO(long id, List<String> diagonsises, List<PrescriptionDTO> prescription, List<String> symptoms,
-			@NotNull(message = "Date cannot be null") LocalDateTime date,
+	public MedicalVisitDTO(long id, @NotNull(message = "Date cannot be null") LocalDateTime date,
 			@NotNull(message = "Doctor cannot be null") String doctorID,
 			@NotNull(message = "Patient cannot be null") String patientID, String comments) {
 		this.id = id;
-		this.diagonsises = diagonsises;
-		this.prescription = prescription;
-		this.symptoms = symptoms;
+		this.diagonsises = new ArrayList<>();
+		this.prescriptionDTO = new ArrayList<>();
+		this.symptoms = new ArrayList<>();
 		this.date = date;
 		this.doctorID = doctorID;
 		this.patientID = patientID;
@@ -60,11 +61,11 @@ public class MedicalVisitDTO {
 	}
 
 	public List<PrescriptionDTO> getPrescription() {
-		return prescription;
+		return prescriptionDTO;
 	}
 
-	public void setPrescription(List<PrescriptionDTO> prescription) {
-		this.prescription = prescription;
+	public void setPrescription(List<PrescriptionDTO> prescriptionDTO) {
+		this.prescriptionDTO = prescriptionDTO;
 	}
 
 	public List<String> getSymptoms() {

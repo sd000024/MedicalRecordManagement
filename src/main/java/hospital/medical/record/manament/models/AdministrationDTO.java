@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 import hospital.medical.record.manament.constants.AdminRole;
 import hospital.medical.record.manament.constants.Gender;
 
-public class AdmistrationDTO {
+public class AdministrationDTO {
 
 	@NotBlank(message = "Employment Number is required")
 	private String employmentNumber;
@@ -29,7 +29,7 @@ public class AdmistrationDTO {
 	@NotNull(message = "The role must selected")
 	private AdminRole adminRole;
 
-	private String contractID;
+	private long contractID;
 
 	private long hospitalID;
 
@@ -41,11 +41,11 @@ public class AdmistrationDTO {
 
 	private long addressID;
 
-	public AdmistrationDTO(@NotBlank(message = "Employment Number is required") String employmentNumber,
+	public AdministrationDTO(@NotBlank(message = "Employment Number is required") String employmentNumber,
 			@NotBlank(message = "Firstname is required") String firstName,
 			@NotBlank(message = "Lastname is required") String lastName,
 			@NotBlank(message = "ID card number is required") String iDCardNumber, String photoURL, String phoneNumber,
-			String email, @NotNull(message = "The role must selected") AdminRole adminRole, String contractID,
+			String email, @NotNull(message = "The role must selected") AdminRole adminRole, long contractID,
 			long hospitalID, @NotBlank(message = "Nationality is required") String nationality,
 			@NotBlank(message = "Gender is required") Gender gender, long addressID) {
 		this.employmentNumber = employmentNumber;
@@ -64,7 +64,7 @@ public class AdmistrationDTO {
 	}
 	
 
-	public AdmistrationDTO() {
+	public AdministrationDTO() {
 	}
 
 
@@ -132,11 +132,11 @@ public class AdmistrationDTO {
 		this.adminRole = adminRole;
 	}
 
-	public String getContractID() {
+	public long getContractID() {
 		return contractID;
 	}
 
-	public void setContractID(String contractID) {
+	public void setContractID(long contractID) {
 		this.contractID = contractID;
 	}
 

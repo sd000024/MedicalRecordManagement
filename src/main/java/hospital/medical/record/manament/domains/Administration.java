@@ -14,7 +14,7 @@ import hospital.medical.record.manament.constants.AdminRole;
 import hospital.medical.record.manament.constants.Gender;
 
 @Entity
-public class Admistration extends Person {
+public class Administration extends Person {
 
 	@Id
 	private String employmentNumber;
@@ -30,7 +30,7 @@ public class Admistration extends Person {
 	@ManyToOne
 	private Hospital hospital;
 
-	public Admistration(@NotBlank(message = "Firstname is required") String firstName,
+	public Administration(@NotBlank(message = "Firstname is required") String firstName,
 			@NotBlank(message = "Lastname is required") String lastName,
 			@NotBlank(message = "ID card number is required") String iDCardNumber, String photoURL, String phoneNumber,
 			String email, @NotBlank(message = "Nationality is required") String nationality,
@@ -43,7 +43,7 @@ public class Admistration extends Person {
 		this.hospital = hospital;
 	}
 
-	public Admistration() {
+	public Administration() {
 		super();
 	}
 

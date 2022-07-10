@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
@@ -12,7 +14,8 @@ import javax.validation.constraints.NotNull;
 public class Appointment {
 
 	@Id
-	private String id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 
 	@ManyToOne
 	@NotNull(message = "Patient is required")
@@ -34,7 +37,7 @@ public class Appointment {
 	@NotNull(message = "The hospital is required")
 	private Hospital hospital;
 
-	public Appointment(String id, @NotNull(message = "Patient is required") Patient patient,
+	public Appointment(long id, @NotNull(message = "Patient is required") Patient patient,
 			@NotNull(message = "Doctor is required") Doctor doctor,
 			@NotNull(message = "date and time are required") LocalDateTime dateAndTime,
 			@NotNull(message = "the reason of appointment is required") String comment,
@@ -50,11 +53,11 @@ public class Appointment {
 	public Appointment() {
 	}
 
-	public String getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

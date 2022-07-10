@@ -28,7 +28,7 @@ public class Hospital {
 	private List<Doctor> doctors;
 
 	@OneToMany(mappedBy = "hospital")
-	private List<Admistration> staff;
+	private List<Administration> staff;
 
 	@OneToOne
 	private Address address;
@@ -39,7 +39,7 @@ public class Hospital {
 		this.name = name;
 		this.logoURL = logoURL;
 		this.doctors = new ArrayList<Doctor>();
-		this.staff = new ArrayList<Admistration>();
+		this.staff = new ArrayList<Administration>();
 		;
 		this.address = address;
 	}
@@ -79,11 +79,11 @@ public class Hospital {
 		this.doctors = doctors;
 	}
 
-	public List<Admistration> getStaff() {
+	public List<Administration> getStaff() {
 		return staff;
 	}
 
-	public void setStaff(List<Admistration> staff) {
+	public void setStaff(List<Administration> staff) {
 		this.staff = staff;
 	}
 

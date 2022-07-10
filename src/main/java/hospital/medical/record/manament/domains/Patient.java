@@ -1,5 +1,6 @@
 package hospital.medical.record.manament.domains;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -49,14 +50,13 @@ public class Patient extends Person {
 			@NotBlank(message = "ID card number is required") String iDCardNumber, String photoURL, String phoneNumber,
 			String email, @NotBlank(message = "Nationality is required") String nationality,
 			@NotBlank(message = "Gender is required") Gender gender, Address address, String medicalNumber,
-			@NotBlank(message = "possword cannot be blank") String password, List<String> allergies,
-			List<String> chronicDiseases, List<String> diseasesFamily, Doctor myDoctor) {
+			@NotBlank(message = "possword cannot be blank") String password, Doctor myDoctor) {
 		super(firstName, lastName, iDCardNumber, photoURL, phoneNumber, email, nationality, gender, address);
 		this.medicalNumber = medicalNumber;
 		this.password = password;
-		this.allergies = allergies;
-		this.chronicDiseases = chronicDiseases;
-		this.diseasesFamily = diseasesFamily;
+		this.allergies = new ArrayList<>();
+		this.chronicDiseases = new ArrayList<>();
+		this.diseasesFamily = new ArrayList<>();
 		this.myDoctor = myDoctor;
 	}
 

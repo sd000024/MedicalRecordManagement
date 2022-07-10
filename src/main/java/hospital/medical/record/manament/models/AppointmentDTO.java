@@ -6,10 +6,10 @@ import javax.validation.constraints.NotNull;
 
 public class AppointmentDTO {
 
-	private String id;
+	private long id;
 
 	@NotNull(message = "Patient is required")
-	private PatientDTO patient;
+	private String patientID;
 
 	@NotNull(message = "Doctor is required")
 	private String doctorID;
@@ -26,33 +26,33 @@ public class AppointmentDTO {
 	public AppointmentDTO() {
 	}
 
-	public AppointmentDTO(String id, @NotNull(message = "Patient is required") PatientDTO patient,
+	public AppointmentDTO(long id, @NotNull(message = "Patient is required") String patientID,
 			@NotNull(message = "Doctor is required") String doctorID,
 			@NotNull(message = "date and time are required") LocalDateTime dateAndTime,
 			@NotNull(message = "the reason of appointment is required") String comment,
 			@NotNull(message = "The hospital is required") long hospitalID) {
 		this.id = id;
-		this.patient = patient;
+		this.patientID = patientID;
 		this.doctorID = doctorID;
 		this.dateAndTime = dateAndTime;
 		this.comment = comment;
 		this.hospitalID = hospitalID;
 	}
 
-	public String getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
-	public PatientDTO getPatient() {
-		return patient;
+	public String getPatientID() {
+		return patientID;
 	}
 
-	public void setPatient(PatientDTO patient) {
-		this.patient = patient;
+	public void setPatientID(String patient) {
+		this.patientID = patient;
 	}
 
 	public String getDoctorID() {
